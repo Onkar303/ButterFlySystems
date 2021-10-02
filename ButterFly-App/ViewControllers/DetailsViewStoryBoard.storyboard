@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Details-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="detailsViewController" title="Details" id="Y6W-OH-hqX" customClass="DetailsViewController" customModule="ButterFly_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1Rw-jV-08p">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="76" id="uw7-RY-cpG" customClass="ItemTableViewCell" customModule="ButterFly_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uw7-RY-cpG" id="j84-JT-gai">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmJ-E2-sGe">
+                                                    <rect key="frame" x="20" y="11" width="57" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjB-Uv-MCL">
+                                                    <rect key="frame" x="20" y="40" width="70" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pmJ-E2-sGe" firstAttribute="leading" secondItem="j84-JT-gai" secondAttribute="leading" constant="20" symbolic="YES" id="Mcn-P8-bzP"/>
+                                                <constraint firstItem="bjB-Uv-MCL" firstAttribute="leading" secondItem="pmJ-E2-sGe" secondAttribute="leading" id="Rfm-0o-dM7"/>
+                                                <constraint firstItem="pmJ-E2-sGe" firstAttribute="top" secondItem="j84-JT-gai" secondAttribute="top" constant="11" id="StH-M9-KFE"/>
+                                                <constraint firstAttribute="bottom" secondItem="bjB-Uv-MCL" secondAttribute="bottom" constant="15" id="THq-J6-e9s"/>
+                                                <constraint firstItem="bjB-Uv-MCL" firstAttribute="top" secondItem="pmJ-E2-sGe" secondAttribute="bottom" constant="8" symbolic="YES" id="eAJ-rU-yfA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemIdLabel" destination="pmJ-E2-sGe" id="dlD-4I-JR5"/>
+                                            <outlet property="quantityLabel" destination="bjB-Uv-MCL" id="bTg-el-g5W"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="invoiceCell" rowHeight="76" id="Xm2-qW-Uaq" customClass="InvoiceTableViewCell" customModule="ButterFly_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="120.5" width="414" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xm2-qW-Uaq" id="vxp-jR-1NB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invoice Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoS-ic-7J4">
+                                                    <rect key="frame" x="20" y="11" width="120" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xM2-Fz-PDg">
+                                                    <rect key="frame" x="20" y="40" width="54" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xM2-Fz-PDg" firstAttribute="top" secondItem="DoS-ic-7J4" secondAttribute="bottom" constant="8" symbolic="YES" id="1wz-Wx-cny"/>
+                                                <constraint firstItem="xM2-Fz-PDg" firstAttribute="leading" secondItem="DoS-ic-7J4" secondAttribute="leading" id="Gcg-5r-SJz"/>
+                                                <constraint firstAttribute="bottom" secondItem="xM2-Fz-PDg" secondAttribute="bottom" constant="15" id="rde-K3-GLT"/>
+                                                <constraint firstItem="DoS-ic-7J4" firstAttribute="leading" secondItem="vxp-jR-1NB" secondAttribute="leading" constant="20" symbolic="YES" id="u0D-ls-3SV"/>
+                                                <constraint firstItem="DoS-ic-7J4" firstAttribute="top" secondItem="vxp-jR-1NB" secondAttribute="top" constant="11" id="wNI-SB-h1k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="invoiceNumberLabel" destination="DoS-ic-7J4" id="yuH-Hs-wzf"/>
+                                            <outlet property="statusLabel" destination="xM2-Fz-PDg" id="ojc-m7-YJv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cancellationCell" rowHeight="79" id="KPg-zb-E0W" customClass="CancellationTableViewCell" customModule="ButterFly_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="196.5" width="414" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KPg-zb-E0W" id="Q1J-ER-zrD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancelation Id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDd-Vc-bqY">
+                                                    <rect key="frame" x="20" y="11" width="114" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ordered_quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIr-5r-GCx">
+                                                    <rect key="frame" x="20" y="40" width="134" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="WIr-5r-GCx" secondAttribute="bottom" constant="18" id="0NR-2p-Hiz"/>
+                                                <constraint firstItem="WIr-5r-GCx" firstAttribute="leading" secondItem="bDd-Vc-bqY" secondAttribute="leading" id="9Nm-hO-dqN"/>
+                                                <constraint firstItem="bDd-Vc-bqY" firstAttribute="top" secondItem="Q1J-ER-zrD" secondAttribute="top" constant="11" id="CYM-u8-0fN"/>
+                                                <constraint firstItem="bDd-Vc-bqY" firstAttribute="leading" secondItem="Q1J-ER-zrD" secondAttribute="leading" constant="20" symbolic="YES" id="EnH-MG-tUW"/>
+                                                <constraint firstItem="WIr-5r-GCx" firstAttribute="top" secondItem="bDd-Vc-bqY" secondAttribute="bottom" constant="8" symbolic="YES" id="GyH-0f-mdi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cancellationIdLabel" destination="bDd-Vc-bqY" id="UHE-bz-IvM"/>
+                                            <outlet property="orderedQuantityLabel" destination="WIr-5r-GCx" id="nT8-dz-GJp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Rw-jV-08p" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="3xf-iH-O7s"/>
+                            <constraint firstItem="1Rw-jV-08p" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="9tQ-GS-njK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="1Rw-jV-08p" secondAttribute="bottom" id="Orc-nD-fKQ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1Rw-jV-08p" secondAttribute="trailing" id="eCI-WQ-ptz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailsTableView" destination="1Rw-jV-08p" id="uUG-Hh-T0U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="94.419642857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
