@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet weak var pruchaseTableView: UITableView!
     var netUtils = NetUtils()
-    var purchaseOrders = [PurchaseOrder]()
+    var purchaseOrders = [Purchase]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     
     //MARK: Moving to Details View Controller
-    func segueToDetailsView(purchaseOrder:PurchaseOrder){
+    func segueToDetailsView(purchaseOrder:Purchase){
         
         let detailsViewStoryBoard = UIStoryboard(name: "DetailsViewStoryBoard", bundle: .main)
         let detailsViewController = detailsViewStoryBoard.instantiateViewController(withIdentifier: "detailsViewController") as! DetailsViewController
@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
     
     //MARK: Calling API
     func callApi(){
-        netUtils.fetchData()
+        //netUtils.fetchData()
     }
     
 }
@@ -93,7 +93,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
 
 //MARK: Fetching response
 extension HomeViewController:ResponseDelegate{
-    func onResponseDelegate(purchases: [PurchaseOrder]) {
+    func onResponseDelegate(purchases: [Purchase]) {
         purchaseOrders.removeAll()
         purchaseOrders.append(contentsOf: purchases)
         DispatchQueue.main.async {

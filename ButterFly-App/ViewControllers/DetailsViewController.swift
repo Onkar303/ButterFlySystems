@@ -16,7 +16,7 @@ class DetailsViewController:UIViewController
     let ITEM_SECTION = 1
     let CANCELLATION_SECTION = 2
     
-    var purchaseOrder:PurchaseOrder?
+    var purchaseOrder:Purchase?
     override func viewDidLoad() {
         super.viewDidLoad()
         attachDelegates()

@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct PurchaseOrder:Codable{
+struct Purchase:Codable{
     
     var id:Int
     var supplier_id:Int

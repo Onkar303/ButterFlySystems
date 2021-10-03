@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PurchaseOrder" representedClassName="PurchaseOrder" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastupdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="numberofitems" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="purchaseCancellions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrderCancellation" inverseName="purchaseOrder" inverseEntity="PurchaseOrderCancellation"/>
+        <relationship name="purchaseInvoice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrderInvoice" inverseName="purchaseOrder" inverseEntity="PurchaseOrderInvoice"/>
+        <relationship name="purchaseItems" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrderItem" inverseName="purchaseOrder" inverseEntity="PurchaseOrderItem"/>
+    </entity>
+    <entity name="PurchaseOrderCancellation" representedClassName="PurchaseOrderCancellation" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderedquantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="purchaseOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrder" inverseName="purchaseCancellions" inverseEntity="PurchaseOrder"/>
+    </entity>
+    <entity name="PurchaseOrderInvoice" representedClassName="PurchaseOrderInvoice" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="receivedstatus" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="purchaseOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrder" inverseName="purchaseInvoice" inverseEntity="PurchaseOrder"/>
+    </entity>
+    <entity name="PurchaseOrderItem" representedClassName="PurchaseOrderItem" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="purchaseOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PurchaseOrder" inverseName="purchaseItems" inverseEntity="PurchaseOrder"/>
+    </entity>
+    <elements>
+        <element name="PurchaseOrder" positionX="-838.328857421875" positionY="61.42234802246094" width="128" height="133"/>
+        <element name="PurchaseOrderItem" positionX="-585.1517333984375" positionY="226.6442260742188" width="128" height="88"/>
+        <element name="PurchaseOrderInvoice" positionX="-854.6427001953125" positionY="-134.7087097167969" width="128" height="74"/>
+        <element name="PurchaseOrderCancellation" positionX="-650.4690551757812" positionY="-63.30996704101562" width="128" height="74"/>
+    </elements>
+</model>

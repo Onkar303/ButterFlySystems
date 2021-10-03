@@ -24,7 +24,7 @@ class NetUtils{
 
             
             do {
-                let purchaseOrder = try JSONDecoder().decode([PurchaseOrder].self, from: data)
+                let purchaseOrder = try JSONDecoder().decode([Purchase].self, from: data)
                 responseDelegate.onResponseDelegate(purchases: purchaseOrder)
             } catch {
                 print("error")

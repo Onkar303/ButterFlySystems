@@ -9,5 +9,5 @@ import Foundation
 
 protocol ResponseDelegate{
     //MARK: Calling this protocal to fetch data
-    func onResponseDelegate(purchases:[PurchaseOrder])
+    func onResponseDelegate(purchases:[Purchase])
 }
