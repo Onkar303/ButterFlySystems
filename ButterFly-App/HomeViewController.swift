@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pruchaseTableView: UITableView!
     var netUtils = NetUtils()
     var purchaseOrders = [Purchase]()
+    var loadingIndicator = GeneralUtils.getLoadingIndicator()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -63,7 +64,8 @@ class HomeViewController: UIViewController {
     
     //MARK: Calling API
     func callApi(){
-        //netUtils.fetchData()
+        present(loadingIndicator, animated: true, completion: nil)
+        netUtils.fetchData()
     }
     
 }
@@ -93,11 +95,13 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
 
 //MARK: Fetching response
 extension HomeViewController:ResponseDelegate{
+    
     func onResponseDelegate(purchases: [Purchase]) {
         purchaseOrders.removeAll()
         purchaseOrders.append(contentsOf: purchases)
         DispatchQueue.main.async {
             self.pruchaseTableView.reloadData()
+            self.loadingIndicator.dismiss(animated: true, completion: nil)
         }
    
         print(purchases)

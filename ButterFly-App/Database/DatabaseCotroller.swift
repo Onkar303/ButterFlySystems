@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 class DatabaseController:NSObject{
@@ -14,6 +15,7 @@ class DatabaseController:NSObject{
     var persistanceContainer:NSPersistentContainer
     var netUtils = NetUtils()
     var apiPurchase = [Purchase]()
+    
     
 
     override init() {
@@ -24,7 +26,6 @@ class DatabaseController:NSObject{
             }
         }
         
-
         super.init()
         attachDelegate()
         
@@ -36,7 +37,7 @@ class DatabaseController:NSObject{
     func attachDelegate(){
         netUtils.responseDelegate = self
         if fetchAllPruchases().isEmpty {
-            netUtils.fetchData()
+            //netUtils.fetchData()
         }
     }
     
@@ -59,16 +60,17 @@ class DatabaseController:NSObject{
         
         let purchase = NSEntityDescription.insertNewObject(forEntityName: "PurchaseOrder", into: persistanceContainer.viewContext) as! PurchaseOrder
         purchase.id = Int64(id)
-        purchase.lastupdated = Date.now
-        purchase.numberofitems = Int64(10)
+        purchase.lastupdated = GeneralUtils.getCurrentdate()
+      
+            //purchase.purchaseItems = insertItem(id: <#T##Int?#>, quantityOrdered: <#T##Int?#>)
         return purchase
     }
     
     
     // MARK: Inserting Purchase Order Item
-    func insertItem(id:Int?,quantityOrdered:Int?)-> PurchaseOrderItem {
-        guard let id = id else { return PurchaseOrderItem()}
-        guard let quantityOrdered = quantityOrdered else {return PurchaseOrderItem()}
+    func insertItem(id:Int?,quantityOrdered:Int?)-> PurchaseOrderItem? {
+        guard let id = id else { return nil}
+        guard let quantityOrdered = quantityOrdered else {return nil}
         
         
         let item = NSEntityDescription.insertNewObject(forEntityName: "PurchaseOrderItem", into: persistanceContainer.viewContext) as! PurchaseOrderItem
@@ -76,6 +78,23 @@ class DatabaseController:NSObject{
         item.quantity = Int64(quantityOrdered)
         
         return item
+    }
+    
+    
+    //MARK: Inserting Purchase Order Invoice
+    func insertInvoice(id:Int?,status:Int?) -> PurchaseOrderInvoice? {
+        
+        guard let id = id else {return nil}
+        guard let status = status else {return nil}
+        
+        let invoice = NSEntityDescription.insertNewObject(forEntityName: "PurchaseOrderInvoice", into: persistanceContainer.viewContext) as! PurchaseOrderInvoice
+        
+        invoice.id = Int64(id)
+        invoice.receivedstatus = Int64(status)
+        
+        
+        return invoice
+        
         
     }
     

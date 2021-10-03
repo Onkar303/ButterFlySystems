@@ -37,6 +37,7 @@
 		42ABEC6F270964C100277BDB /* PurchaseOrderItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC67270964C100277BDB /* PurchaseOrderItem+CoreDataProperties.swift */; };
 		42ABEC70270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC68270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift */; };
 		42ABEC71270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC69270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift */; };
+		42ABEC73270A56A600277BDB /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC72270A56A600277BDB /* GeneralUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		42ABEC67270964C100277BDB /* PurchaseOrderItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchaseOrderItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		42ABEC68270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchaseOrderInvoice+CoreDataClass.swift"; sourceTree = "<group>"; };
 		42ABEC69270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchaseOrderInvoice+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		42ABEC72270A56A600277BDB /* GeneralUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				42ABEC092707E92200277BDB /* Constants.swift */,
 				42ABEC0E2707F03700277BDB /* NetUtils.swift */,
+				42ABEC72270A56A600277BDB /* GeneralUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				42ABEC2D270836F100277BDB /* DatabaseCotroller.swift in Sources */,
 				42ABEC1A2708293900277BDB /* ButterFlySystems-Database.xcdatamodeld in Sources */,
 				42ABEC042707DF5200277BDB /* ItemsTableViewCell.swift in Sources */,
+				42ABEC73270A56A600277BDB /* GeneralUtils.swift in Sources */,
 				42ABEC0D2707EF8900277BDB /* ResponseDelegate.swift in Sources */,
 				42ABEC6C270964C100277BDB /* PurchaseOrder+CoreDataClass.swift in Sources */,
 				42ABEC6A270964C100277BDB /* PurchaseOrderCancellation+CoreDataClass.swift in Sources */,
