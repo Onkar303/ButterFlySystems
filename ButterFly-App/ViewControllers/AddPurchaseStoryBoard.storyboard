@@ -86,6 +86,8 @@
                     </view>
                     <connections>
                         <outlet property="idLabel" destination="Z1s-Gq-4ja" id="zL1-JQ-F30"/>
+                        <outlet property="invoiceIdTextField" destination="wdW-L2-d4P" id="hGA-Kn-MQa"/>
+                        <outlet property="statusTextField" destination="ms7-1I-z5T" id="USb-eK-eK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

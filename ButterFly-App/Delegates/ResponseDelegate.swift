@@ -7,7 +7,11 @@
 
 import Foundation
 
-protocol ResponseDelegate{
+protocol ApiResponseDelegate{
     //MARK: Calling this protocal to fetch data
-    func onResponseDelegate(purchases:[Purchase])
+    func onApiResponseDelegate(purchases:[Purchase])
+}
+
+protocol DatabaseResponseDelegate {
+    func onDatabaseResponseDelegate(isCompleted:Bool,purchaseOrders:[PurchaseOrder])
 }

@@ -16,10 +16,13 @@ class DetailsViewController:UIViewController
     let ITEM_SECTION = 1
     let CANCELLATION_SECTION = 2
     
-    var purchaseOrder:Purchase?
+    var purchaseOrder:PurchaseOrder?
+    var databaseUpdateDelegate:DatabaseUpdatedDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attachDelegates()
+        configureUI()
     }
     
     
@@ -27,6 +30,31 @@ class DetailsViewController:UIViewController
     func attachDelegates(){
         detailsTableView.delegate = self
         detailsTableView.dataSource = self
+    }
+    
+    func configureUI(){
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Item", style:.plain , target: self, action: #selector(presentAddItemViewController))
+    
+    }
+    
+    
+    @objc func presentAddItemViewController(){
+        let addItemStoryBoard = UIStoryboard(name: "AddItemStoryBoard", bundle: .main)
+        let addItemViewController = addItemStoryBoard.instantiateViewController(withIdentifier: "addItemViewController") as! AddItemViewController
+        
+
+        addItemViewController.purchaseOrder = purchaseOrder
+        addItemViewController.databaseUpdatedDelegate = self
+        
+        present(addItemViewController, animated: true, completion: nil)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        databaseUpdateDelegate?.onDatabaseUpdated()
+        
     }
     
 }
@@ -39,14 +67,15 @@ extension DetailsViewController:UITableViewDelegate,UITableViewDataSource{
         return 3
     }
     
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == INVOICE_SECTION {
-            return (purchaseOrder?.invoices.count)!
+            return (purchaseOrder?.purchaseInvoice!.count)!
         } else if section == ITEM_SECTION {
-            return (purchaseOrder?.items.count)!
+            return (purchaseOrder?.purchaseItems!.count)!
         } else {
-            return (purchaseOrder?.cancellations.count)!
+            return (purchaseOrder?.purchaseCancellions!.count)!
         }
     }
     
@@ -54,29 +83,29 @@ extension DetailsViewController:UITableViewDelegate,UITableViewDataSource{
         
         guard let purchaseOrder = purchaseOrder else {return InvoiceTableViewCell()}
         
+       
         if indexPath.section == INVOICE_SECTION {
             
             let invoiceCell = tableView.dequeueReusableCell(withIdentifier: "invoiceCell", for: indexPath) as! InvoiceTableViewCell
-            
-            invoiceCell.invoiceNumberLabel.text = "Invoice Number:  \(purchaseOrder.invoices[indexPath.row].invoice_number)"
-            invoiceCell.statusLabel.text = "Received Status: \(purchaseOrder.invoices[indexPath.row].received_status)"
+            let invoice = purchaseOrder.purchaseInvoice?.allObjects as! [PurchaseOrderInvoice]
+            invoiceCell.invoiceNumberLabel.text = "Invoice Number:  \( invoice[indexPath.row].id )"
+            invoiceCell.statusLabel.text = "Received Status: \(invoice[indexPath.row].receivedstatus)"
             
             return invoiceCell
         } else if indexPath.section ==  ITEM_SECTION {
             
             let itemCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
-            
-            itemCell.itemIdLabel.text = "Id: \(purchaseOrder.items[indexPath.row].id)"
-            itemCell.quantityLabel.text = "Quantity: \(purchaseOrder.items[indexPath.row].quantity)"
+            let items = purchaseOrder.purchaseItems?.allObjects as! [PurchaseOrderItem]
+            itemCell.itemIdLabel.text = "Id: \(items[indexPath.row].id)"
+            itemCell.quantityLabel.text = "Quantity: \(items[indexPath.row].quantity)"
             
             return itemCell
         } else {
             
             let cancellationCell = tableView.dequeueReusableCell(withIdentifier: "cancellationCell", for: indexPath) as! CancellationTableViewCell
-            
-            cancellationCell.cancellationIdLabel.text = "Id: \(purchaseOrder.cancellations[indexPath.row].id)"
-            cancellationCell.orderedQuantityLabel.text = "Ordered Quantity: \(purchaseOrder.cancellations[indexPath.row].ordered_quantity)"
-            
+//            let cancellation = purchaseOrder.purchaseItems?.allObjects as [PurchaseOrderCancellation]
+//            cancellationCell.cancellationIdLabel.text = "Id: \(cancellation[indexPath.row].id)"
+//            cancellationCell.orderedQuantityLabel.text = "Ordered Quantity: \(cancellation[indexPath.row].orderedquantity)"
             return cancellationCell
         }
     
@@ -94,4 +123,12 @@ extension DetailsViewController:UITableViewDelegate,UITableViewDataSource{
         
     }
     
+}
+
+extension DetailsViewController:DatabaseUpdatedDelegate {
+    func onDatabaseUpdated() {
+        DispatchQueue.main.async {
+            self.detailsTableView.reloadData()
+        }
+    }
 }

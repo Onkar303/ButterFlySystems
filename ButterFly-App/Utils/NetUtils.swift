@@ -9,7 +9,7 @@ import Foundation
 
 
 class NetUtils{
-    var responseDelegate:ResponseDelegate?
+    var responseDelegate:ApiResponseDelegate?
     
   
     //MARK: Fetching Data from URL
@@ -25,7 +25,7 @@ class NetUtils{
             
             do {
                 let purchaseOrder = try JSONDecoder().decode([Purchase].self, from: data)
-                responseDelegate.onResponseDelegate(purchases: purchaseOrder)
+                responseDelegate.onApiResponseDelegate(purchases: purchaseOrder)
             } catch {
                 print("error")
             }

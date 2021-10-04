@@ -38,6 +38,7 @@
 		42ABEC70270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC68270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift */; };
 		42ABEC71270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC69270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift */; };
 		42ABEC73270A56A600277BDB /* GeneralUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC72270A56A600277BDB /* GeneralUtils.swift */; };
+		42ABEC75270A9F8700277BDB /* ReloadDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ABEC74270A9F8700277BDB /* ReloadDelegates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		42ABEC68270964C100277BDB /* PurchaseOrderInvoice+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchaseOrderInvoice+CoreDataClass.swift"; sourceTree = "<group>"; };
 		42ABEC69270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchaseOrderInvoice+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		42ABEC72270A56A600277BDB /* GeneralUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUtils.swift; sourceTree = "<group>"; };
+		42ABEC74270A9F8700277BDB /* ReloadDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDelegates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				42ABEC0C2707EF8900277BDB /* ResponseDelegate.swift */,
+				42ABEC74270A9F8700277BDB /* ReloadDelegates.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				42ABEC0A2707E92200277BDB /* Constants.swift in Sources */,
 				42ABEC6D270964C100277BDB /* PurchaseOrder+CoreDataProperties.swift in Sources */,
 				42ABEC71270964C100277BDB /* PurchaseOrderInvoice+CoreDataProperties.swift in Sources */,
+				42ABEC75270A9F8700277BDB /* ReloadDelegates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +458,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -482,7 +486,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

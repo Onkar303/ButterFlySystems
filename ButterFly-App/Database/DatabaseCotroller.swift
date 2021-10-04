@@ -15,7 +15,7 @@ class DatabaseController:NSObject{
     var persistanceContainer:NSPersistentContainer
     var netUtils = NetUtils()
     var apiPurchase = [Purchase]()
-    
+    var databaseDelegate:DatabaseResponseDelegate?
     
 
     override init() {
@@ -29,15 +29,20 @@ class DatabaseController:NSObject{
         super.init()
         attachDelegate()
         
-      
     }
     
     
     //MARK: Attaching Delegates
     func attachDelegate(){
         netUtils.responseDelegate = self
+    }
+    
+    
+    func initializeRepository() {
         if fetchAllPruchases().isEmpty {
-            //netUtils.fetchData()
+            netUtils.fetchData()
+        } else {
+            databaseDelegate?.onDatabaseResponseDelegate(isCompleted: true, purchaseOrders: fetchAllPruchases())
         }
     }
     
@@ -61,7 +66,7 @@ class DatabaseController:NSObject{
         let purchase = NSEntityDescription.insertNewObject(forEntityName: "PurchaseOrder", into: persistanceContainer.viewContext) as! PurchaseOrder
         purchase.id = Int64(id)
         purchase.lastupdated = GeneralUtils.getCurrentdate()
-      
+        //purchase.addToPurchaseInvoice(insertInvoice(id: 101, status: 1)!)
             //purchase.purchaseItems = insertItem(id: <#T##Int?#>, quantityOrdered: <#T##Int?#>)
         return purchase
     }
@@ -99,6 +104,21 @@ class DatabaseController:NSObject{
     }
     
     
+    //MARK: Inserting Purchase Order Cancellation
+    func insertCancellation(id:Int?,orderedQuantity:Int?) -> PurchaseOrderCancellation?{
+        guard let id = id else {return nil}
+        guard let orderedQuantity = orderedQuantity else {return nil}
+        
+        let cancellation = NSEntityDescription.insertNewObject(forEntityName: "PurchaseOrderCancellation", into: persistanceContainer.viewContext) as! PurchaseOrderCancellation
+        
+        cancellation.id = Int64(id)
+        cancellation.orderedquantity = Int64(orderedQuantity)
+        
+        return cancellation
+        
+    }
+    
+    
     //MARK: Fetching All Purchases
     func fetchAllPruchases() -> [PurchaseOrder]{
         let fetchRequest = PurchaseOrder.fetchRequest()
@@ -115,12 +135,30 @@ class DatabaseController:NSObject{
 }
 
 
-extension DatabaseController:ResponseDelegate{
+extension DatabaseController:ApiResponseDelegate{
     
-    func onResponseDelegate(purchases: [Purchase]) {
+    func onApiResponseDelegate(purchases: [Purchase]) {
         apiPurchase.removeAll()
         apiPurchase.append(contentsOf: purchases)
+        
+        for p in purchases {
+            
+            let purchaseOrder = insertPurchase(id: p.id)
+            
+            for pi in p.items {
+                purchaseOrder.addToPurchaseItems(insertItem(id: pi.id, quantityOrdered: pi.quantity)!)
+            }
+            purchaseOrder.numberofitems = Int64(purchaseOrder.purchaseItems!.count)
+            
+            for can in p.cancellations {
+                purchaseOrder.addToPurchaseCancellions(insertCancellation(id: can.id, orderedQuantity: can.ordered_quantity)!)
+            }
+            
+            for inv in p.invoices {
+                purchaseOrder.addToPurchaseInvoice(insertInvoice(id: inv.id, status: inv.received_status)!)
+            }
+        }
+        saveData()
+        databaseDelegate?.onDatabaseResponseDelegate(isCompleted: true, purchaseOrders: fetchAllPruchases())
     }
-    
-    
 }

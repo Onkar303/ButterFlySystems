@@ -10,7 +10,11 @@ import UIKit
 class AddPurchaseViewController: UIViewController {
 
     @IBOutlet weak var idLabel: UITextField!
+    @IBOutlet weak var invoiceIdTextField: UITextField!
+    @IBOutlet weak var statusTextField: UITextField!
     weak var databaseController:DatabaseController?
+    var onDatabaseUpdated:DatabaseUpdatedDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,14 +26,40 @@ class AddPurchaseViewController: UIViewController {
     
     
     @IBAction func onAddData(_ sender: Any) {
-        let _ = databaseController?.insertPurchase(id: Int(idLabel.text!) ?? 2)
+        
+        guard let id = idLabel.text,!id.isEmpty else {
+            presentError()
+            return
+        }
+        guard let invoidId = invoiceIdTextField.text,!invoidId.isEmpty else {
+            presentError()
+            return
+            
+        }
+        guard let status = statusTextField.text,!status.isEmpty else {
+            presentError()
+            return
+            
+        }
+        
+        let purchaseOrder = databaseController?.insertPurchase(id: Int(id))
+        purchaseOrder?.addToPurchaseInvoice((databaseController?.insertInvoice(id: Int(invoidId), status: Int(status)))!)
+        
         databaseController?.saveData()
+        onDatabaseUpdated?.onDatabaseUpdated()
+        dismiss(animated: true)
     }
     
     
     @IBAction func onFetchData(_ sender: Any) {
         print(databaseController?.fetchAllPruchases())
     }
+        
     
+    func presentError(){
+        present(GeneralUtils.getAlertController(title: "Error", message: "Please Enter all Fields")!, animated:
+                    true, completion: nil)
+        
+    }
    
 }
